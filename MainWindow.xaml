@@ -1,3 +1,4 @@
+
 <Window x:Class="MyControlApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,8 +8,7 @@
         ResizeMode="NoResize" Visibility="Hidden">
 
     <Window.Resources>
-
-        <!-- Modern flat slider (Windows 11 style) -->
+        <!-- Modern flat slider -->
         <Style x:Key="ModernSlider" TargetType="Slider">
             <Setter Property="Height" Value="24"/>
             <Setter Property="IsMoveToPointEnabled" Value="True"/>
@@ -63,7 +63,7 @@
             </Setter>
         </Style>
 
-        <!-- Flat modern button -->
+        <!-- Flat button style -->
         <Style x:Key="FlatButton" TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -86,14 +86,12 @@
             </Setter>
         </Style>
 
-        <!-- Icon-only close/hide button -->
         <Style x:Key="IconButton" TargetType="Button" BasedOn="{StaticResource FlatButton}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#a0a0b8"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="6"/>
         </Style>
-
     </Window.Resources>
 
     <Border Background="#16161f" CornerRadius="18" BorderBrush="#2a2a3d" BorderThickness="1.2">
@@ -108,7 +106,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Title bar (drag + close) -->
+            <!-- Title bar -->
             <DockPanel Grid.Row="0" Margin="0,0,0,22" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Ellipse Width="10" Height="10" Fill="#7f5af0" Margin="0,0,8,0"/>
