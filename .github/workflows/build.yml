@@ -1,13 +1,16 @@
-name: Build Desktop Overlay App
+name: Build Control Hub Executable
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout Code
+    - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Setup .NET SDK
@@ -15,14 +18,11 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Restore Dependencies
-      run: dotnet restore
+    - name: Publish single-file executable
+      run: dotnet publish MyControlApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 
-    - name: Publish Single Executable
-      run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
-
-    - name: Upload .exe Artifact
+    - name: Upload exe artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ControlOverlay-Executable
-        path: bin/Release/net8.0-windows/win-x64/publish/
+        name: ControlHub-Executable
+        path: bin/Release/net8.0-windows/win-x64/publish/ControlHub.exe
